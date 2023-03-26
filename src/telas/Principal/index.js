@@ -6,6 +6,8 @@ import estilos from './estilos';
 import { auth } from '../../config/firebase';
 import { BotaoProduto } from '../../componentes/BotaoProduto';
 import { pegarProdutos, pegarProdutosTempoReal } from '../../servicos/firestore';
+import { doc, setDoc, collection, addDoc } from 'firebase/firestore';
+import { db } from '../../config/firebase';
 
 export default function Principal({ navigation }) {
   const usuario = auth.currentUser;
@@ -20,9 +22,13 @@ export default function Principal({ navigation }) {
   }
 
   useEffect(() => {
-    carregarDadosProdutos()
-
-    pegarProdutosTempoReal(setProdutos)
+    async function criarProduto(){
+      await addDoc(collection(db, "produtos"),{
+        nome: "Tenis",
+        preco: 890.90
+      });
+    }
+    criarProduto()
   },[])
 
   function deslogar(){
