@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"; 
 
-export default StyleSheet.create({
+export default StyleSheet.create({ 
   botao: {
     position: 'absolute',
     bottom: 20,
@@ -18,4 +18,4 @@ export default StyleSheet.create({
     fontWeight: "700",
     color: '#fff'
   }
-})
+}) 
