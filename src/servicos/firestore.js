@@ -1,5 +1,5 @@
 import { db } from "../config/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc } from "firebase/firestore";
 
 export async function salvarProduto(data){
     try{
@@ -10,3 +10,22 @@ export async function salvarProduto(data){
         return 'erro'
     }
 }
+
+export async function pegarProdutos(){
+    try {
+        const querySnapshot = await getDocs(collection(db, "produtos"));
+        let produtos = []
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            let produto = {id: doc.id, ...doc.data()}
+            produtos.push(produto)
+        });
+        return produtos
+    } catch(error){
+        console.log(error)
+        return[]
+    }
+
+
+}
+
