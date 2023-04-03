@@ -45,8 +45,11 @@ export default function Principal({ navigation }) {
       >
       {
         produtos?.map((produto) => {
-          return<Produto nome={produto.nome} 
-          preco={produto.preco} key={produto.id}/>
+          return(
+          <TouchableOpacity key={produto.id} onPress={() => navigation.navigate('DadosProduto',produto)}>
+            <Produto nome={produto.nome} 
+            preco={produto.preco} />
+          </TouchableOpacity>)
         }) 
       }
       </ScrollView>
